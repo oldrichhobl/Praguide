@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prag Guide</title>
+    <meta charset="utf-8" />
+<!--
+                               -->  
+    
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    
+    <link rel="stylesheet" type="text/css" href="appframework/af.ui.css" />
+    <link rel="stylesheet" type="text/css" href="appframework/icons.css" />
+    <link rel="stylesheet" type="text/css" href="css/my.css" />
+
+
+
+    <script type="text/javascript" charset="utf-8" src="appframework/appframework.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="appframework/appframework.ui.min.js"></script>
+    <!--AppFramework plugin for sliding side menu-->
+    <script type="text/javascript" charset="utf-8" src="appframework/plugins/af.slidemenu.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="filesmuj.js"></script>
+    <script type="text/javascript" charset="utf-8" src="filesystem.js"></script>
+
+    <script>    
+
+
+//  When the program is ready
+    function ProgramReady() {
+        app.log("ProgramReady !! OKej ");
+        //hide splash screen now that our app is ready to run
+        setTimeout(function () {
+        $.ui.launch();
+        }, 250);
+        
+        // ****  ovladani tlacitek menu a back  ****
+        //document.addEventListener("menubutton", onMenuKeyDown, false );
+        // document.addEventListener("backbutton", onBackKeyDown, false); 
+    
+    };        
+        function ctiTexty(fname){
+            var xml = loadXMLDoc(fname);
+            alert('ctiTexty xml =  ' + xml );
+            var txt = xml.getElementsByTagName("ul")[0].textContent;
+            alert('ctiTexty textContent  =  ' + txt );
+            
+        }
+       function getExternal(fname){
+           try {
+            var xml = getExternalFilesDirs();
+            alert('getExternalFilesDirs =  ' + xml );
+        }
+        catch (e) {
+          alert("ERROR CATCH " + e)
+        }
+        }
+
+       function showCordovaFile(fname){
+           try {
+            alert("showCordovaFile" + cordova);
+            alert( ' cordova.file.applicationStorageDirectory  =  ' +  cordova.file.applicationStorageDirectory
+                  +' cordova.file.dataDirectory   =  ' +   cordova.file.dataDirectory 
+                  +' cordova.file.externalDataDirectory    =  ' +    cordova.file.externalDataDirectory 
+                    );
+        }
+        catch (e) {
+          alert("ERROR showcordova file " + e)
+        }
+        }
+
+        function mluveni(text)
+        {
+            var msg = new SpeechSynthesisUtterance(text);
+            window.speechSynthesis.speak(msg);
+
+        }
+
+    </script>
+<!-- end  -->
+    
+    <script>   
+        $.ui.autoLaunch = false;
+        $.ui.animateHeaders = false;
+                
+        $(document).ready(function(){
+            $.ui.setSideMenuWidth('260px');
+            $.ui.launch();
+        });
+    </script>
+    
+  <style> 
+    #afui #settingsList.list li {padding: 10px}       
+/* css for custom list item, modify as needed */        
+    #afui #listview .list li {padding:10px 20px 10px 10px}
+    .list-image {float:left;width:50px;height:50px}
+    .list-text {margin-left:60px;min-height:50px}        
+    </style>   
+    
+    
+</head>
+<body> 
+<div id="afui">
+ <!-- splash screen -->
+<div id="splashscreen" class='ui-loader'>
+<img src="img/splash.png">
+<br><br>
+<span class='ui-icon ui-icon-loading spin'></span><h1 >Startér</h1>
+</div>
+ 
+ 
+    <!--Left Side Menu Navigation bar -->
+    <nav>
+        <ul class="list">
+            <li><a href="#page1" class="icon home big">Home</a></li>
+            <li><a href="#page2" class="icon heart big">Favorites</a></li>
+            <li><a href="javascript:window.open('http://opesol.org/ANDROID/PRAHA/weather.html')"  class="icon magnifier big"><img src="img/weather-partly-sunny.svg" /> Weather</a></li>
+            <li><a href="javascript:window.open('http://opesol.org/ANDROID/PLZEN/')" class="icon chat big">Messages</a></li>
+            <li><a href="#page4" class="icon lamp big">Profile</a></li>
+            <li><a href="#settings" class="icon settings big">Settings</a></li>
+            <li><a href="#errorspage" class="icon error big">Errors</a></li>
+            <li><a href="#logpage" class="icon tv big">Logging</a></li>
+        </ul>
+    </nav>
+    
+    <div id="content" style=""> 
+        
+    <!--Main View Pages-->
+        <div class="panel bgpage1" style="background: url('pozadi/mosty.jpg');" title="Home" id="page1" data-footer="none" selected="true">
+            <header>
+                <a id="menubadge" onclick='$.ui.toggleSideMenu()' class='menuButton' style="float:left !important"></a>
+                <h1>P R A H A</h1>
+            </header>
+            <a href="#page2"><img src="img/browser.png"   class="myicon"  /></a>
+            
+            <a href="javascript:window.open('http://opesol.org/ANDROID/PRAHA/weather.html')"><img src="img/cloud.png"  class="myicon"   /></a>
+            <a href="javascript:window.open('http://opesol.org/ANDROID/PLZEN/')"><img src="img/pin.png" class="myicon"  /></a>
+            <a href="#page4"><img src="img/calendar.png"   class="myicon"  /></a>
+            
+            <a href="javascript:window.open('http://www.seznam.cz')"><img src="img/bookshelf.png" class="myicon" /></a>
+            <a href="#settings"><img src="img/gear.png"   class="myicon"  /></a>
+            
+        </div>
+        
+        <div class="panel" title="Favorites" id="page2" data-footer="none">
+            <header>
+                <a id="menubadge" onclick='$.ui.toggleSideMenu()' class='menuButton' style="float:left !important"></a>
+                <h1>Favorites</h1>
+            </header>
+              <ul class="list">
+                <li>
+                    <a href="#item1">
+                        <img class="list-image" src="pozadi/mosty43.JPG" />
+                        <div class="list-text"><b>Bridges</b><br>Praha pohled z kavárny</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#item2">
+                        <img class="list-image" src="img/wine.svg" />
+                        <div class="list-text"><b>Restaurant Svejk</b><br>Napiš sem co chceš.</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#item3">
+                        <img class="list-image" src="img/female_user_icon.png" />
+                        <div class="list-text"><b>Kavárna</b><br>Napiš sem co chceš.</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#item4">
+                        <img class="list-image" src="img/male_user_icon.png" />
+                        <div class="list-text"><b>Pivnice</b><br>Napiš sem co chceš.</div>
+                    </a>
+                </li>                
+            </ul>
+
+            
+        </div>
+        
+        <div class="panel" title="Messages" id="page3" data-footer="none">
+            <header>
+                <a id="menubadge" onclick='$.ui.toggleSideMenu()' class='menuButton' style="float:left !important"></a>
+                <h1>Messages</h1>
+            </header>
+            <p>Napiš sem co chceš MESSAGES</p>
+        </div>
+        
+        <div class="panel" title="Profile" id="page4" data-footer="none">
+            <header>
+                <a id="menubadge" onclick='$.ui.toggleSideMenu()' class='menuButton' style="float:left !important"></a>
+                <h1>Profile</h1>
+            </header>
+            <a href="javascript:window.open('http://www.seznam.cz')" class="button big"> S - E - Z - N - A - M </a>
+	    <a class="button" href="javascript:$.ui.disableSplitView();" >split</a>
+            <hr/><hr/><hr/>
+            
+            <a class="button" href="javascript:ctiTexty('file:///android_asset/www/texty.xml');" >Cti texty.xml</a>
+	    <hr/><hr/><hr/>
+            <a class="button" href="javascript:ctiTexty('file:///data/texty.xml');" >Čti texty.xml z datového uložiště</a>
+	    <hr/><hr/><hr/>
+            <a class="button" href="javascript:getExternal('file:///data/texty.xml');" >get External Files dirs</a>
+
+            <hr/><hr/><hr/>
+            <a class="button" href="javascript:showCordovaFile('file:///data/texty.xml');" >Show Cordova File path</a>
+	</div>
+        
+    
+        <!--List View Page-->
+        
+    <!--Detail View Pages for each list items-->
+        <div class="panel" title="Item 1" id="item1" data-footer="none">
+            <p>DEtailní popis</p>
+            
+            <img src="pozadi/mosty43.JPG" height="90%" />
+        </div>
+        
+        <div class="panel" title="Švejk" id="item2" data-footer="none">
+            <p>Restaurant Švejk</p>
+            <img src="img/wine.svg" height="90%" />
+            
+            A cavernous room in the basement of the Municipal House is home to a 
+            great big Czech food experience. Huge plates of all the good stuff come 
+            streaming from the kitchen. Go for some roasted duck, pork tenderloin, 
+            beef goulash or chicken or pork schnitzel. 
+            Washed down with lots of cold Pilsner beer, you’ll be feeling full and fine in no time.
+            Gorgeous Art Nouveau interiors and a nice staff, reservations are recommended.
+        </div>
+        
+        <div class="panel" title="Polozka 3" id="item3" data-footer="none">
+            <p>Detailní popis 3</p>
+        </div>
+        
+     
+       <div class="panel" title="Polozka  4" id="item4" data-footer="none">
+            <p>Detailní popis 4</p>
+        </div>
+       <div class="panel" title="Položka 5" id="item5" data-footer="none">
+            <p>Popis položky 5</p>
+        </div>
+   
+    
+        <!-- SETTINGS  modal view panel -->
+        <div class="panel" title="Settings" id="settings" modal="true" data-footer="none">
+            <p>Settings</p>
+            <ul class="list inset" id="settingsList">
+                <li>
+                    <label>Only Wifi</label>
+                    <input id="toggle1" type="checkbox" name="toggle1" value="1" class="toggle" checked><label style="left:70%" for="toggle1" data-on="On" data-off="Off"><span></span></label>
+                </li>
+                <li>
+                    <label>Off-line</label>
+                    <input id="toggle2" type="checkbox" name="toggle2" value="0" class="toggle"><label style="left:70%" for="toggle2" data-on="On" data-off="Off"><span></span></label>
+                </li>
+            </ul> 
+        </div>
+
+        <!-- MESSAGES and ERRORS modal view panel -->
+        <div class="panel" title="Errors" id="errorspage" modal="true" data-footer="none">
+            <a class="button" href="javascript:showFile('file:///mnt/extSdCard/PREDNASKY/listlectures.xml');" >Open file</a>
+                        <hr/><hr/><hr/>
+            <a class="button" href="javascript:showFile('files-external://texty.xml');" >Show file</a>
+                        <hr/><hr/><hr/>
+            <a class="button" href="javascript:showFile('files:///texty.xml');" >Show file3</a>
+
+            <a class="button" href="javascript:showFileExternal();" >Show applicationStorageDirectory </a>
+          
+            <a class="button" href="javascript:mluveni('hello john, what are you going to do. Yeh ');" >Promluva anglická</a>
+                        <hr/><hr/><hr/>
+
+            <h1>Errors</h1>
+            <div id="errortxt">
+                 No errors ?
+            </div> 
+            <h1>Status</h1>
+            <div id="statustxt">
+                 No status ?
+            </div> 
+            <h1>Messages</h1>
+            <div id="messagestxt">
+                 No messages ?
+            </div> 
+        </div>
+
+        <!-- log panel -->
+        <div class="panel" title="Log panel" id="logpage"  data-footer="none">
+            <h1>Log </h1>
+            <ul id="logtxt"  class="list">
+                <li> Start ?</li>
+            </ul> 
+        </div>
+    
+    
+    
+    
+    </div>
+</div>
+    
+    
+    
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+            
+    /*   
+    $(document.body).popup({
+    title: "Alert! Alert!",
+    message: "This is a test of the emergency alert system!! Don't PANIC!",
+    cancelText: "Cancel me",
+    cancelClass: "mybutton",
+    doneClass: "mybutton",
+    cancelCallback: function () {
+        console.log("cancelled");
+    },
+    doneText: "I'm done!",
+    doneCallback: function () {
+        console.log("Done for!");
+    },
+    cancelOnly: false
+});
+*/
+            
+        </script>   
+    
+</body>
+</html>    

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<root>
+               <ul class="list" >
+                <li>
+                    <a  href="#item1">
+                        <img class="list-image" src="pozadi/mosty43.JPG" />
+                        <div class="list-text"><b>Bridges</b><br/>Praha pohled z kavárny</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#item2">
+                        <img class="list-image" src="img/wine.svg" />
+                        <div class="list-text"><b>Restaurant Švejk</b><br/>Napiš sem co chceš.</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#item3">
+                        <img class="list-image" src="data/female_user_icon.svg" />
+                        <div class="list-text"><b>Kavárna</b><br/>Napiš sem co chceš.</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#item4">
+                        <img class="list-image" src="data/male_user_icon.svg" />
+                        <div class="list-text"><b>Pivnice</b><br/>Napiš sem co chceš.</div>
+                    </a>
+                </li>                
+            </ul>
+
+</root>
